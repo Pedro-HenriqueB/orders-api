@@ -1,12 +1,10 @@
-import express, { Request, Response } from 'express';
+import express, { Application } from 'express';
+import router from '@/infrastructure/http/routes/routes';
+import env from "../env";
 
-const app = express();
-const port = 3000;
+const app: Application = express();
+app.use(router);
 
-app.get('/', (req: Request, res: Response) => {
-    res.status(200).json({ Message: 'Hello from express!' });
-});
-
-app.listen(port, () => {
-    console.log('Server running on port', port);
+app.listen(env.PORT , () => {
+    console.log('Server running on port', env.PORT);
 });
